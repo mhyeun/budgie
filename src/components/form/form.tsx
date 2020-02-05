@@ -6,24 +6,26 @@ const Form = () => {
   const [password, setPassword] = useState("");
 
   return (
-    <div>
+    <div id="grid">
       <div>
         Username:
+        <br />
+        <input
+          name="username"
+          value={username}
+          onChange={e => setUsername(e.target.value)}
+        />
       </div>
-      <input
-        name="username"
-        value={username}
-        onChange={e => setUsername(e.target.value)}
-      />
       <div>
         Password:
+        <br />
+        <input
+          type="password"
+          name="password"
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+        />
       </div>
-      <input
-        type="password"
-        name="password"
-        value={password}
-        onChange={e => setPassword(e.target.value)}
-      />
     </div>
   );
 };
