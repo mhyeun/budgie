@@ -1,12 +1,12 @@
 import React from "react";
 import "./App.scss";
 
-import Form from "./components/form/form";
+import Home from "./components/home/home";
 
 const App = () => {
   return (
-    <div className="App">
-      <Form />
+    <div>
+      <Home />
     </div>
   );
 };

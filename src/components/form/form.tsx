@@ -7,11 +7,17 @@ const Form = () => {
 
   return (
     <div>
+      <div>
+        Username:
+      </div>
       <input
         name="username"
         value={username}
         onChange={e => setUsername(e.target.value)}
       />
+      <div>
+        Password:
+      </div>
       <input
         type="password"
         name="password"
