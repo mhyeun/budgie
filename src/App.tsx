@@ -1,7 +1,7 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import "./App.css";
 
-import Form from "./form";
+import Form from "./components/form/form";
 
 const App = () => {
   return (
@@ -9,6 +9,6 @@ const App = () => {
       <Form />
     </div>
   );
-}
+};
 
 export default App;
