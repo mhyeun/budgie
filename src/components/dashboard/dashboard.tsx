@@ -4,6 +4,7 @@ import "./dashboard.scss";
 const Dashboard = (loggedOn: any) => {
     return (
         <div>
+            My Dashboard
         </div>
     );
 };
