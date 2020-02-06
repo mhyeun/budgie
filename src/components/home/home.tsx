@@ -9,7 +9,7 @@ const Home = () => {
       <div id="login">
         <img id="logo" src={logo} />
         <h1>Budgeting App</h1>
-        <h3>Please enter your credentials</h3>
+        <h4>Please enter your credentials</h4>
         <Form />
       </div>
     </div>
