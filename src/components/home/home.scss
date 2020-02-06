@@ -6,5 +6,10 @@
   #login {
     display: inline-block;
     text-align: center;
+    border-style: solid;
+    padding: 0ex 5ex 5ex 5ex;
+    border-width: thin;
+    border-radius: 2ex;
+    box-shadow: 1ex 1ex 1ex 1ex grey;
   }
 }
