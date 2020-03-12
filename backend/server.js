@@ -21,6 +21,12 @@ connection.once("open", () => {
   console.log("MongoDB database connection established successfully");
 });
 
+// require, use route files
+// whenever the route url is visited with the respective router, the router will be called
+const usersRouter = require('./routes/users');
+
+app.use('/users', usersRouter); 
+
 // start server
 app.listen(port, () => {
   console.log("Server is running on port: " + port);
