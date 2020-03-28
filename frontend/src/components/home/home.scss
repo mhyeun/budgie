@@ -2,7 +2,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  min-height: calc(100vh - 8ex);
+  padding-bottom: 8ex;
   #login {
     display: inline-block;
     text-align: center;

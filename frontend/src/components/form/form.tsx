@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./form.scss";
+import history from "../../history";
 
 const Form = () => {
   const [username, setUsername] = useState("");
@@ -8,43 +9,42 @@ const Form = () => {
 
   // Presses "Log In" button when user presses enter
   const handleKeyPress = (e: any) => {
-    if (e.key === "Enter" && username && password){
+    if (e.key === "Enter" && username && password) {
       handleButtonClick(e);
     }
-  }
+  };
 
   const handleButtonClick = (e: any) => {
     // TODO: needs backend work to see what to do with login request
-    if (username === "saad" && password === "taj"){
+    if (username === "saad" && password === "taj") {
       setLoggedOn(true);
-      alert("Logged In.");
-    }
-    else {
+      history.push("/dashboard");
+    } else {
       setLoggedOn(false);
       alert("Username or password incorrect. Please try again.");
     }
-  }
+  };
 
   return (
     <div>
       <div id="grid">
-          <input
-            placeholder="Username"
-            name="username"
-            id="user"
-            value={username}
-            onChange={e => setUsername(e.target.value)}
-            onKeyPress={handleKeyPress}
-          />
-          <input
-            placeholder="Password"
-            type="password"
-            name="password"
-            id="pw"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-            onKeyPress={handleKeyPress}
-          />
+        <input
+          placeholder="Username"
+          name="username"
+          id="user"
+          value={username}
+          onChange={e => setUsername(e.target.value)}
+          onKeyPress={handleKeyPress}
+        />
+        <input
+          placeholder="Password"
+          type="password"
+          name="password"
+          id="pw"
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+          onKeyPress={handleKeyPress}
+        />
       </div>
       <div id="enterButton">
         <button
