@@ -6,7 +6,10 @@ let User = require('../models/user.model');
 // GET requests on /users/
 router.route('/').get((req, res) => {
     User.find()
-      .then(users => res.json(users))
+      .then(users => {
+        // TODO: set passwords to null for all users prior to returning them
+        res.json(users);
+      })
       .catch(err => res.status(400).json('Error: ' + err));
 });
 
@@ -44,7 +47,7 @@ router.route('/:id').get((req, res) => {
       .then(user => {
         let userInfo = user;
         userInfo.password = null;
-        
+
         res.json(userInfo);
       })
       .catch(err => res.status(400).json('Error: ' + err));
