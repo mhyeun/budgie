@@ -6,11 +6,27 @@ import Dashboard from "./components/dashboard/dashboard";
 import NavBar from "./components/navbar/navbar";
 import history from "./history";
 import { Route, Router, BrowserRouter, Switch } from "react-router-dom";
+import { createStore } from "redux";
+
+const logging = (state: boolean = false, action: any) => {
+  switch (action) {
+    case "logged":
+      return true;
+    case "unlogged":
+      return false;
+    default:
+      return state;
+  }
+};
+
+let store = createStore(logging);
+
+store.subscribe(() => console.log(store.getState()));
 
 const App = () => {
   return (
     <div>
-      <NavBar />
+      <NavBar gvars={store} />
       <BrowserRouter>
         <Router history={history}>
           <Switch>
