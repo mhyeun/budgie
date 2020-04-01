@@ -25,8 +25,8 @@ store.subscribe(() => console.log(store.getState()));
 
 const App = () => {
   return (
-    <div>
-      <NavBar gvars={store} />
+    <>
+      <NavBar />
       <BrowserRouter>
         <Router history={history}>
           <Switch>
@@ -35,7 +35,7 @@ const App = () => {
           </Switch>
         </Router>
       </BrowserRouter>
-    </div>
+    </>
   );
 };
 
