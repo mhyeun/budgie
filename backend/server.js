@@ -23,9 +23,9 @@ connection.once("open", () => {
 
 // require, use route files
 // whenever the route url is visited with the respective router, the router will be called
-const usersRouter = require('./routes/users');
+const usersRouter = require("./routes/users");
 
-app.use('/users', usersRouter); 
+app.use("/users", usersRouter);
 
 // start server
 app.listen(port, () => {
