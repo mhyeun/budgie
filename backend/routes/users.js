@@ -28,8 +28,8 @@ router.route("/add").post((req, res) => {
         .hash(req.body.password, 12)
         .then(hashedPassword => {
           const newUser = new User({
-            username,
-            hashedPassword
+            username: username,
+            password: hashedPassword
           });
 
           newUser
