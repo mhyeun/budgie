@@ -7,6 +7,7 @@ import NavBar from "./components/navbar/navbar";
 import history from "./history";
 import { Route, Router, BrowserRouter, Switch } from "react-router-dom";
 import { createStore } from "redux";
+import { Provider } from "react-redux";
 
 const logging = (state: boolean = false, action: any) => {
   switch (action) {
@@ -25,7 +26,7 @@ store.subscribe(() => console.log(store.getState()));
 
 const App = () => {
   return (
-    <>
+    <Provider store={store}>
       <NavBar />
       <BrowserRouter>
         <Router history={history}>
@@ -35,7 +36,7 @@ const App = () => {
           </Switch>
         </Router>
       </BrowserRouter>
-    </>
+    </Provider>
   );
 };
 
