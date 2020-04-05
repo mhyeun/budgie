@@ -16,8 +16,9 @@ const Form = () => {
     }
   };
 
-  const handleButtonClick = (e: any) => {
-    if (authUser(username, password)) {
+  const handleButtonClick = async (e: any) => {
+    const authorized = await authUser(username, password);
+    if (authorized) {
       setLoggedOn(true);
       store.dispatch(logmein());
       history.push("/dashboard");
