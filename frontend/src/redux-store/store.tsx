@@ -1,7 +1,8 @@
-import { createStore } from "redux";
+import { createStore, applyMiddleware, Reducer } from "redux";
+import thunk from "redux-thunk";
 
 const initialState = {
-  logged: "false",
+  logged: false,
 };
 
 function logging(state = initialState, action: any): any {
@@ -19,7 +20,7 @@ function logging(state = initialState, action: any): any {
   }
 }
 
-const store = createStore(logging);
+const store = createStore(logging, initialState, applyMiddleware(thunk));
 
 store.subscribe(() => console.log(store.getState()));
 
