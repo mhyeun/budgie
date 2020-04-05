@@ -4,26 +4,20 @@ const initialState = {
   logged: "false",
 };
 
-const logging = (state = [], action) => {
+function logging(state = initialState, action: any): any {
   switch (action.type) {
     case "login":
-      return [
-        ...state,
-        {
-          logged: "true",
-        },
-      ];
+      return {
+        logged: true,
+      };
     case "logout":
-      return [
-        ...state,
-        {
-          logged: "false",
-        },
-      ];
+      return {
+        logged: false,
+      };
     default:
-      return [...state];
+      return state;
   }
-};
+}
 
 const store = createStore(logging);
 
