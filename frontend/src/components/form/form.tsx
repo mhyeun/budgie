@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./form.scss";
 import history from "../../history";
+import store from "../../app";
 
 const Form = () => {
   const [username, setUsername] = useState("");
@@ -33,7 +34,7 @@ const Form = () => {
           name="username"
           id="user"
           value={username}
-          onChange={e => setUsername(e.target.value)}
+          onChange={(e) => setUsername(e.target.value)}
           onKeyPress={handleKeyPress}
         />
         <input
@@ -42,7 +43,7 @@ const Form = () => {
           name="password"
           id="pw"
           value={password}
-          onChange={e => setPassword(e.target.value)}
+          onChange={(e) => setPassword(e.target.value)}
           onKeyPress={handleKeyPress}
         />
       </div>
