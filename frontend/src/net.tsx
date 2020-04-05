@@ -4,7 +4,7 @@ const bcrypt = require("bcryptjs");
 // saad using port 5000 for server
 const url = "https://localhost:5000";
 
-export async function createUser(username, password) {
+export async function createUser(username: String, password: String) {
   try {
     const res = await axios.post(`${url}/users/add`, {
       username: username,
@@ -13,7 +13,6 @@ export async function createUser(username, password) {
     console.log(res);
     return Promise.resolve(res.data);
   } catch (err) {
-    data;
     console.error(err);
     Promise.reject(err);
   }
@@ -22,7 +21,7 @@ export async function createUser(username, password) {
 export async function getAllUsers() {
   try {
     const res = await axios.get(`${url}/users/`);
-    connsole.log(res);
+    console.log(res);
     return Promise.resolve(res.data);
   } catch (err) {
     console.error(err);
@@ -30,7 +29,7 @@ export async function getAllUsers() {
   }
 }
 
-export async function getUser(username) {
+export async function getUser(username: String) {
   try {
     const res = await axios.get(`${url}/users/${username}`);
     console.log(res);
@@ -41,7 +40,7 @@ export async function getUser(username) {
   }
 }
 
-export async function authUser(username, password) {
+export async function authUser(username: String, password: String) {
   try {
     const res = await axios.get(`${url}/users/${username}`);
     const passwordsMatch = await bcrypt.compare(password, res.data.password);
