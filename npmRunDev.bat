@@ -1,3 +1,3 @@
 pushd frontend
-npm run start
+npm run dev
 popd
