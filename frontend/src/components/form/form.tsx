@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./form.scss";
 import history from "../../history";
+import { authUser } from "../../net";
 // import store from "../../app";
 
 const Form = () => {
@@ -17,7 +18,7 @@ const Form = () => {
 
   const handleButtonClick = (e: any) => {
     // TODO: needs backend work to see what to do with login request
-    if (username === "saad" && password === "taj") {
+    if (authUser(username, password)) {
       setLoggedOn(true);
       history.push("/dashboard");
     } else {
