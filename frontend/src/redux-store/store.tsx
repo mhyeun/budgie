@@ -20,9 +20,13 @@ function logging(state = initialState, action: any): any {
   }
 }
 
+export function logmein() {
+  return {
+    type: "login",
+  };
+}
+
 const store = createStore(logging, initialState, applyMiddleware(thunk));
 console.log(store.getState());
-store.dispatch("login");
 store.subscribe(() => console.log(store.getState()));
-
 export default store;
