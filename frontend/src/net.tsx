@@ -42,12 +42,12 @@ export async function getUser(username: String) {
 
 export async function authUser(username: String, password: String) {
   try {
-    console.log("AuthUser called")
-    const res = await axios.get(`${url}/users/${username}`);
-    console.log("Given: ", username, password);
-    console.log("From DB: ", res.data);
-    const passwordsMatch = await bcrypt.compare(password, res.data.password);
-    const usernamesMatch = res.data.username === username;
+    const res = await axios.get(`${url}/users/`);
+    const foundUser = res.filter((user: { username: String; }) => user.username === username);
+    console.log("User found: ", foundUser);
+
+    const passwordsMatch = await bcrypt.compare(password, foundUser.password);
+    const usernamesMatch = foundUser.username === username;
     if (passwordsMatch && usernamesMatch) return true;
     return false;
   } catch (err) {
