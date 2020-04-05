@@ -56,12 +56,13 @@ router.route("/add").post((req, res) => {
 
 // GET user by username
 router.route("/:username").get((req, res) => {
-  User.findOne({ username: req.body.username }).then(user => {
-    let userInfo = user;
-    userInfo.password = null;
-
-    res.json(userInfo);
-  });
+  User.findOne({ username: req.body.username })
+    .then(user => {
+      if (!user) {
+        throw new Error("User doesn't exist.")
+      }
+      res.json(user);
+    });
 });
 
 // DELETE specific user
