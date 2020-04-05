@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./form.scss";
 import history from "../../history";
-import { authUser } from "../../net";
+import { authUser, getUser, getAllUsers, createUser } from "../../net";
 // import store from "../../app";
 
 const Form = () => {
@@ -17,14 +17,18 @@ const Form = () => {
   };
 
   const handleButtonClick = (e: any) => {
+    fetch("https://localhost:5000/users/")
+      .then(res => {
+        console.log(res);
+      })
     // TODO: needs backend work to see what to do with login request
-    if (authUser(username, password)) {
-      setLoggedOn(true);
-      history.push("/dashboard");
-    } else {
-      setLoggedOn(false);
-      alert("Username or password incorrect. Please try again.");
-    }
+    // if (authUser(username, password)) {
+    //   setLoggedOn(true);
+    //   history.push("/dashboard");
+    // } else {
+    //   setLoggedOn(false);
+    //   alert("Username or password incorrect. Please try again.");
+    // }
   };
 
   return (

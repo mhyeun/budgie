@@ -42,7 +42,10 @@ export async function getUser(username: String) {
 
 export async function authUser(username: String, password: String) {
   try {
+    console.log("AuthUser called")
     const res = await axios.get(`${url}/users/${username}`);
+    console.log("Given: ", username, password);
+    console.log("From DB: ", res.data);
     const passwordsMatch = await bcrypt.compare(password, res.data.password);
     const usernamesMatch = res.data.username === username;
     if (passwordsMatch && usernamesMatch) return true;
