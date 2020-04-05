@@ -43,17 +43,11 @@ export async function getUser(username: String) {
 export async function authUser(username: String, password: String) {
   try {
     const res = await axios.get(`${url}/users/`);
-    console.log(res);
     const foundUser = res.data.filter(
       (user: { username: String }) => user.username === username
-    );
-    console.log("User found: ", foundUser);
-
-    const passwordsMatch = await bcrypt.compare(
-      password,
-      foundUser[0].password
-    );
-    const usernamesMatch = foundUser[0].username === username;
+    )[0];
+    const passwordsMatch = await bcrypt.compare(password, foundUser.password);
+    const usernamesMatch = foundUser.username === username;
     if (passwordsMatch && usernamesMatch) return true;
     return false;
   } catch (err) {
