@@ -66,7 +66,7 @@ router.route("/:username").get((req, res) => {
 });
 
 // DELETE specific user
-router.route("/:id").delete((req, res) => {
+router.route("/delete/:id").delete((req, res) => {
   User.findByIdAndDelete(req.params.id)
     .then(() => res.json("User deleted."))
     .catch(err => res.status(400).json("Error: " + err));
