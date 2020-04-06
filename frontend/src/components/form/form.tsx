@@ -34,7 +34,7 @@ const Form = () => {
       <div id="grid">
         <input
           style={{
-            'border': attemptFailed ? '2px solid red' : '1px solid black'
+            border: attemptFailed ? "1px solid red" : "1px solid black",
           }}
           placeholder="Username"
           name="username"
@@ -45,7 +45,7 @@ const Form = () => {
         />
         <input
           style={{
-            'border': attemptFailed ? '2px solid red' : '1px solid black'
+            border: attemptFailed ? "1px solid red" : "1px solid black",
           }}
           placeholder="Password"
           type="password"
