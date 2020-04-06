@@ -31,24 +31,26 @@ export async function getAllUsers() {
 
 export async function getUser(username: String) {
   try {
-    const res = await axios.get(`${url}/users/${username}`);
-    console.log(res);
-    return Promise.resolve(res.data);
-  } catch (err) {
-    console.error(err);
-    Promise.reject(err);
-  }
-}
-// TODO: add undefined checks for username and password
-export async function authUser(username: String, password: String) {
-  try {
     const res = await axios.get(`${url}/users/`);
     const foundUser = res.data.filter(
       (user: { username: String }) => user.username === username
-    )[0];
-    const passwordsMatch = await bcrypt.compare(password, foundUser.password);
-    const usernamesMatch = foundUser.username === username;
-    if (passwordsMatch && usernamesMatch) return true;
+    );
+    if (foundUser) return foundUser[0];
+    return false;
+  } catch (err) {
+    console.error(err);
+    Promise.reject(err);
+    return false;
+  }
+}
+
+export async function authUser(username: String, password: String) {
+  try {
+    const foundUser = await getUser(username);
+    if (foundUser) {
+      const passwordsMatch = await bcrypt.compare(password, foundUser.password);
+      if (passwordsMatch) return true;
+    }
     return false;
   } catch (err) {
     console.error(err);

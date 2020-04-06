@@ -55,15 +55,15 @@ router.route("/add").post((req, res) => {
 // });
 
 // GET user by username
-router.route("/:username").get((req, res) => {
-  User.findOne({ username: req.body.username })
-    .then(user => {
-      if (!user) {
-        throw new Error("User doesn't exist.")
-      }
-      res.json(user);
-    });
-});
+// router.route("/:username").get((req, res) => {
+//   User.findOne({ username: req.body.username })
+//     .then(user => {
+//       if (!user) {
+//         throw new Error("User doesn't exist.")
+//       }
+//       res.json(user);
+//     });
+// });
 
 // DELETE specific user
 router.route("/delete/:id").delete((req, res) => {
