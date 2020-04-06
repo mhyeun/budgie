@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import "./form.scss";
 import history from "../../history";
 import store, { logmein } from "../../redux-store/store";
-import { authUser, getUser, getAllUsers, createUser } from "../../net";
+import { authUser } from "../../net";
 
 const Form = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loggedOn, setLoggedOn] = useState(false);
+  const [attemptFailed, setAttemptFailed] = useState(false);
 
   // Presses "Log In" button when user presses enter
   const handleKeyPress = (e: any) => {
@@ -24,7 +25,7 @@ const Form = () => {
       history.push("/dashboard");
     } else {
       setLoggedOn(false);
-      alert("Username or password incorrect. Please try again.");
+      setAttemptFailed(true);
     }
   };
 
@@ -32,6 +33,9 @@ const Form = () => {
     <div>
       <div id="grid">
         <input
+          style={{
+            'border': attemptFailed ? '2px solid red' : '1px solid black'
+          }}
           placeholder="Username"
           name="username"
           id="user"
@@ -40,6 +44,9 @@ const Form = () => {
           onKeyPress={handleKeyPress}
         />
         <input
+          style={{
+            'border': attemptFailed ? '2px solid red' : '1px solid black'
+          }}
           placeholder="Password"
           type="password"
           name="password"
@@ -49,6 +56,11 @@ const Form = () => {
           onKeyPress={handleKeyPress}
         />
       </div>
+      {attemptFailed && (
+        <div id="message">
+          <p id="msg">Incorrect username or password. Try again.</p>
+        </div>
+      )}
       <div id="enterButton">
         <button
           id="enter"
