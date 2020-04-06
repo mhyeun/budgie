@@ -6,7 +6,7 @@ import "./navbar.scss";
 const NavBar = () => {
   return (
     <Navbar sticky="top">
-      <Navbar.Brand href="#home">
+      <Navbar.Brand href="/">
         <img id="logo" src={applogo} width={40} height={40} />
       </Navbar.Brand>
       <Nav className="ml-auto">

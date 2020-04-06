@@ -1,12 +1,20 @@
+@import "../../index.scss";
 .navbar {
-  background-color: white;
+  background-color: $themeblue;
   border-bottom: 1px solid black;
-  box-shadow: 0 1ex 1ex 1ex grey;
   height: 8ex;
   font-size: 16px;
   .dropdown-menu {
     font-size: 14px;
     margin-top: 11px;
     margin-left: -57px;
+  }
+  .navbar-nav > a.nav-link,
+  .dropdown.nav-item > a.nav-link {
+    color: white;
+  }
+  .navbar-nav > a.nav-link:hover,
+  .dropdown.nav-item > a.nav-link:hover {
+    color: $themecharcoal;
   }
 }
