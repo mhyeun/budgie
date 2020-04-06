@@ -19,8 +19,14 @@
     border-radius: 4px;
   }
 }
+#message {
+  #msg{
+    color: red;
+    margin-bottom: 0;
+  }
+}
 #enterButton {
-  margin-top: 20px;
+  margin-top: 10px;
   #enter {
   width: 30%;
   margin-left: 35%;
