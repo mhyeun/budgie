@@ -26,6 +26,12 @@ export function logMeIn() {
   };
 }
 
+export function logmeout() {
+  return {
+    type: "logout",
+  };
+}
+
 const store = createStore(logging, initialState, applyMiddleware(thunk));
 console.log(store.getState());
 store.subscribe(() => console.log(store.getState()));

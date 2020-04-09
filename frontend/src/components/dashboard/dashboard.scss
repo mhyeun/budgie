@@ -1,0 +1,5 @@
+@import "../../index.scss";
+#dashboard {
+  background-color: #99f38d;
+  height: calc(100vh - #{$navbarheight});
+}
