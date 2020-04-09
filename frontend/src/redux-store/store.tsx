@@ -20,7 +20,7 @@ function logging(state = initialState, action: any): any {
   }
 }
 
-export function logmein() {
+export function logMeIn() {
   return {
     type: "login",
   };

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./form.scss";
 import history from "../../history";
-import store, { logmein } from "../../redux-store/store";
+import store, { logMeIn } from "../../redux-store/store";
 import { authUser } from "../../net";
 
 const Form = () => {
@@ -22,7 +22,7 @@ const Form = () => {
     const authorized = await authUser(username, password);
     if (authorized) {
       setLoggedOn(true);
-      store.dispatch(logmein());
+      store.dispatch(logMeIn());
       history.push("/dashboard");
     } else {
       setLoggedOn(false);
