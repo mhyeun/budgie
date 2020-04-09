@@ -1,8 +1,9 @@
-import { createStore, applyMiddleware, Reducer } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 
 const initialState = {
   logged: false,
+  id: "",
 };
 
 function logging(state = initialState, action: any): any {
@@ -10,6 +11,7 @@ function logging(state = initialState, action: any): any {
     case "login":
       return {
         logged: true,
+        id: action.id,
       };
     case "logout":
       return {
@@ -20,9 +22,10 @@ function logging(state = initialState, action: any): any {
   }
 }
 
-export function logMeIn() {
+export function logMeIn(myid: string) {
   return {
     type: "login",
+    id: myid,
   };
 }
 
