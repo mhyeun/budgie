@@ -20,7 +20,7 @@ const Form = () => {
     setAttemptFailed(false);
     const authorized = await authUser(username, password);
     if (authorized) {
-      store.dispatch(logMeIn());
+      store.dispatch(logMeIn(authorized));
       history.push("/dashboard");
     } else {
       setAttemptFailed(true);
