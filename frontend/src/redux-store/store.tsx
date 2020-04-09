@@ -26,7 +26,7 @@ export function logMeIn() {
   };
 }
 
-export function logmeout() {
+export function logMeOut() {
   return {
     type: "logout",
   };
