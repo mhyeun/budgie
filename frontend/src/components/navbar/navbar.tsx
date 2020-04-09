@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import applogo from "../../icons/budgie.svg";
 import "./navbar.scss";
+import store, { logmeout } from "../../redux-store/store";
 import { connect } from "react-redux";
 
 export interface NavBarProps {
@@ -24,7 +25,12 @@ class NavBar extends React.Component<NavBarProps> {
                 Profile Settings
               </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">Log Out</NavDropdown.Item>
+              <NavDropdown.Item
+                href="/"
+                onClick={() => store.dispatch(logmeout())}
+              >
+                Log Out
+              </NavDropdown.Item>
             </NavDropdown>
           </Nav>
         )}

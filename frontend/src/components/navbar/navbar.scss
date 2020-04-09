@@ -2,7 +2,7 @@
 .navbar {
   background-color: $themeblue;
   border-bottom: 1px solid black;
-  height: 8ex;
+  height: $navbarheight;
   font-size: 16px;
   .dropdown-menu {
     font-size: 14px;

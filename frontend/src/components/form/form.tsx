@@ -7,7 +7,6 @@ import { authUser } from "../../net";
 const Form = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [loggedOn, setLoggedOn] = useState(false);
   const [attemptFailed, setAttemptFailed] = useState(false);
 
   // Presses "Log In" button when user presses enter
@@ -21,17 +20,15 @@ const Form = () => {
     setAttemptFailed(false);
     const authorized = await authUser(username, password);
     if (authorized) {
-      setLoggedOn(true);
       store.dispatch(logmein());
       history.push("/dashboard");
     } else {
-      setLoggedOn(false);
       setAttemptFailed(true);
     }
   };
 
   return (
-    <div>
+    <>
       <div id="grid">
         <input
           style={{
@@ -72,7 +69,7 @@ const Form = () => {
           Log In
         </button>
       </div>
-    </div>
+    </>
   );
 };
 
