@@ -32,7 +32,7 @@ router.route("/add/goal/:financeId").post((req, res) => {
 });
 
 // GET history
-router.route("/get/history/:financeId").get((req, res) => {
+router.route("/history/:financeId").get((req, res) => {
   UserFinance.findById(req.params.financeId)
     .then((userFinance) => {
       const history = userFinance.history;
@@ -42,7 +42,7 @@ router.route("/get/history/:financeId").get((req, res) => {
 });
 
 // GET goals
-router.route("/get/goals/:financeId").get((req, res) => {
+router.route("/goals/:financeId").get((req, res) => {
   UserFinance.findById(req.params.financeId)
     .then((userFinance) => {
       const goals = userFinance.goals;

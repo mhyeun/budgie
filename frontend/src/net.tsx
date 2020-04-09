@@ -28,7 +28,18 @@ export async function createUser(username: String, password: String) {
   }
 }
 
-export async function getUser(username: String) {
+export async function getUser(userId: String) {
+  try {
+    const res = await axios.get(`${url}/users/${userId}`);
+    // Promise.resolve(res.data)
+    return res.data;
+  } catch (err) {
+    console.error(err);
+    Promise.reject(err);
+  }
+}
+
+async function authHelper(username: String) {
   try {
     const res = await axios.get(`${url}/users/`);
     const foundUser = res.data.filter(
@@ -45,10 +56,10 @@ export async function getUser(username: String) {
 
 export async function authUser(username: String, password: String) {
   try {
-    const foundUser = await getUser(username);
+    const foundUser = await authHelper(username);
     if (foundUser) {
       const passwordsMatch = await bcrypt.compare(password, foundUser.password);
-      if (passwordsMatch) return true;
+      if (passwordsMatch) return foundUser._id;
     }
     return false;
   } catch (err) {
@@ -71,7 +82,7 @@ export async function getAllFinances() {
 
 export async function getHistory(financeId: String) {
   try {
-    const res = await axios.get(`${url}/usersFinance/get/history/${financeId}`);
+    const res = await axios.get(`${url}/usersFinance/history/${financeId}`);
     return Promise.resolve(res.data);
   } catch (err) {
     console.error(err);
@@ -81,7 +92,7 @@ export async function getHistory(financeId: String) {
 
 export async function getGoals(financeId: String) {
   try {
-    const res = await axios.get(`${url}/usersFinance/get/goals/${financeId}`);
+    const res = await axios.get(`${url}/usersFinance/goals/${financeId}`);
     return Promise.resolve(res.data);
   } catch (err) {
     console.error(err);
