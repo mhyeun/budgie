@@ -18,6 +18,7 @@ const Form = () => {
   };
 
   const handleButtonClick = async (e: any) => {
+    setAttemptFailed(false);
     const authorized = await authUser(username, password);
     if (authorized) {
       setLoggedOn(true);
