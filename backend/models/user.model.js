@@ -12,22 +12,21 @@ const userSchema = new Schema(
       unique: true,
       trim: true,
       minlength: 3,
-      maxlength: 10
+      maxlength: 10,
     },
     password: {
       type: String,
       required: true,
-      unique: true
+      unique: true,
     },
-    history: {
-      type: Array
+    // ID to relate a user to a finance object
+    financeId: {
+      type: Schema.Types.ObjectId,
+      unique: true,
     },
-    goals: {
-      type: Array
-    }
   },
   {
-    timestamps: true
+    timestamps: true,
   }
 );
 
