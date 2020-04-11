@@ -4,6 +4,7 @@ import { getUser } from "../net";
 
 const initialState = {
   logged: false,
+  username: "",
   id: "",
   financeid: "",
 };
@@ -13,6 +14,7 @@ function logging(state = initialState, action) {
     case "login":
       return {
         logged: true,
+        username: action.username,
         id: action.id,
         financeid: action.financeid,
       };
@@ -28,6 +30,7 @@ function logging(state = initialState, action) {
 export function logMeIn(myid) {
   return {
     type: "login",
+    username: getUser(myid).username,
     id: myid,
     financeid: getUser(myid).financeid,
   };
