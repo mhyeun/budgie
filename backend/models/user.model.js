@@ -19,11 +19,6 @@ const userSchema = new Schema(
       required: true,
       unique: true,
     },
-    // ID to relate a user to a finance object
-    financeId: {
-      type: Schema.Types.ObjectId,
-      unique: true,
-    },
   },
   {
     timestamps: true,
