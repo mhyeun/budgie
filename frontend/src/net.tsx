@@ -79,19 +79,9 @@ export async function getAllFinances() {
   }
 }
 
-export async function getHistory(financeId: String) {
+export async function getFinanceWithId(userId: String) {
   try {
-    const res = await axios.get(`${url}/usersFinance/history/${financeId}`);
-    return Promise.resolve(res.data);
-  } catch (err) {
-    console.error(err);
-    Promise.reject(err);
-  }
-}
-
-export async function getGoals(financeId: String) {
-  try {
-    const res = await axios.get(`${url}/usersFinance/goals/${financeId}`);
+    const res = await axios.get(`${url}/usersFinance/${userId}`);
     return Promise.resolve(res.data);
   } catch (err) {
     console.error(err);

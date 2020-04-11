@@ -11,6 +11,7 @@ router.route("/").get((req, res) => {
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
+// Create a finance object
 router.route("/add").post((req, res) => {
   const newUserFinance = new UserFinance({
     history: [],
@@ -21,6 +22,13 @@ router.route("/add").post((req, res) => {
   newUserFinance
     .save()
     .then()
+    .catch((err) => res.status(400).json("Error: " + err));
+});
+
+// Get finance object with userId
+router.route("/:userId").get((req, res) => {
+  UserFinance.findOne({ userId: req.params.userId })
+    .then((userFinance) => res.json(userFinance))
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
@@ -40,26 +48,6 @@ router.route("/add/goal/:financeId").post((req, res) => {
     .then((userFinance) => {
       userFinance.goals.push(req.body.newGoal);
       res.json("Pushed to goals successfully.");
-    })
-    .catch((err) => res.status(400).json("Error: " + err));
-});
-
-// GET history
-router.route("/history/:financeId").get((req, res) => {
-  UserFinance.findById(req.params.financeId)
-    .then((userFinance) => {
-      const history = userFinance.history;
-      res.json(history);
-    })
-    .catch((err) => res.status(400).json("Error: " + err));
-});
-
-// GET goals
-router.route("/goals/:financeId").get((req, res) => {
-  UserFinance.findById(req.params.financeId)
-    .then((userFinance) => {
-      const goals = userFinance.goals;
-      res.json(goals);
     })
     .catch((err) => res.status(400).json("Error: " + err));
 });
