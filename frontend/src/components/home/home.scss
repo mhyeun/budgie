@@ -1,10 +1,11 @@
+@import "../../index.scss";
 #home {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: calc(100vh - 8ex);
   padding-bottom: 8ex;
-  background-color: #f9f871;
+  background-color: $themecharcoal;
   #login {
     height: 314px;
     background-color: whitesmoke;
