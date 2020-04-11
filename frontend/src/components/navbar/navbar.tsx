@@ -18,7 +18,7 @@ class NavBar extends React.Component<NavBarProps> {
         </Navbar.Brand>
         {this.props.logged && (
           <Nav className="ml-auto">
-            <Nav.Link href="/dashboard">My Budgeting</Nav.Link>
+            <Nav.Link href="#myChart">My Budgeting</Nav.Link>
             <NavDropdown title="Account" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">My Profile</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">

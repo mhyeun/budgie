@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./dashboard.scss";
-import Chart from "chart.js";
 
 const Dashboard = () => {
   return (
