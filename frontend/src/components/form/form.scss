@@ -1,68 +1,70 @@
 @import "../../index.scss";
-#grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 1em;
-  #user {
-    box-sizing: border-box;
-    padding: 5px 5px;
-    margin: 6px;
+#form {
+  #grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1em;
+    #user {
+      box-sizing: border-box;
+      padding: 5px 5px;
+      margin: 6px;
 
-    border: 1px solid black;
-    border-radius: 4px;
-  }
-  #pw {
-    box-sizing: border-box;
-    padding: 5px 5px;
-    margin: 6px;
+      border: 1px solid black;
+      border-radius: 4px;
+    }
+    #pw {
+      box-sizing: border-box;
+      padding: 5px 5px;
+      margin: 6px;
 
-    border: 1px solid black;
-    border-radius: 4px;
+      border: 1px solid black;
+      border-radius: 4px;
+    }
   }
-}
-#message {
-  #msg {
-    color: red;
-    margin-top: 0;
-    margin-bottom: -24px;
+  #message {
+    #msg {
+      color: red;
+      margin-top: 0;
+      margin-bottom: -24px;
+    }
   }
-}
-#enterButton {
-  margin-top: 28px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 1em;
-  #accountCreator {
-    margin-right: auto;
-    margin-left: 6px;
-    padding: 5px 0px 5px 0px;
-    text-align: center;
-    padding: 5px 0px 5px 0px;
-  }
-  #accountCreator:hover {
-    text-decoration: none;
-  }
-  #enter {
-    width: 55%;
-    margin-left: auto;
-    margin-right: 6px;
-    text-align: center;
-    font-size: 14px;
-    padding: 5px 0px 5px 0px;
-    border-radius: 8px;
-    border: 1px solid black;
-  }
-  i {
-    border: solid $themeblue;
-    border-width: 0 3px 3px 0;
-    display: inline-block;
-    padding: 3px;
-  }
-  #enter:hover {
-    box-shadow: 0 0 6px rgba(black, 0.2);
-  }
-  .right {
-    transform: rotate(-45deg);
-    -webkit-transform: rotate(-45deg);
+  #enterButton {
+    margin-top: 28px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1em;
+    #accountCreator {
+      margin-right: auto;
+      margin-left: 6px;
+      padding: 5px 0px 5px 0px;
+      text-align: center;
+      padding: 5px 0px 5px 0px;
+    }
+    #accountCreator:hover {
+      text-decoration: none;
+    }
+    #enter {
+      width: 55%;
+      margin-left: auto;
+      margin-right: 6px;
+      text-align: center;
+      font-size: 14px;
+      padding: 5px 0px 5px 0px;
+      border-radius: 8px;
+      border: 1px solid black;
+    }
+    i {
+      border: solid $themeblue;
+      border-width: 0 3px 3px 0;
+      display: inline-block;
+      padding: 3px;
+    }
+    #enter:hover {
+      box-shadow: 0 0 6px rgba(black, 0.2);
+    }
+    .right {
+      transform: rotate(-45deg);
+      -webkit-transform: rotate(-45deg);
+    }
   }
 }

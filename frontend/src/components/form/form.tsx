@@ -28,7 +28,7 @@ const Form = () => {
   };
 
   return (
-    <>
+    <div id="form">
       <div id="grid">
         <input
           style={{
@@ -72,7 +72,7 @@ const Form = () => {
           Log In <i className="arrow right" />
         </button>
       </div>
-    </>
+    </div>
   );
 };
 
