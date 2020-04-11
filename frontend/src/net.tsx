@@ -31,8 +31,7 @@ export async function createUser(username: String, password: String) {
 export async function getUser(userId: String) {
   try {
     const res = await axios.get(`${url}/users/${userId}`);
-    // Promise.resolve(res.data)
-    return res.data;
+    return Promise.resolve(res.data);
   } catch (err) {
     console.error(err);
     Promise.reject(err);
