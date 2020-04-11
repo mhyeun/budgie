@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./form.scss";
 import history from "../../history";
 import store, { logMeIn } from "../../redux-store/store";
-import { authUser } from "../../net";
+import { authUser, getUser } from "../../net";
 
 const Form = () => {
   const [username, setUsername] = useState("");
@@ -20,7 +20,13 @@ const Form = () => {
     setAttemptFailed(false);
     const authorized = await authUser(username, password);
     if (authorized) {
-      store.dispatch(logMeIn(authorized));
+      store.dispatch(
+        logMeIn(
+          authorized,
+          await getUser(authorized).username,
+          await getUser(authorized).financeid
+        )
+      );
       history.push("/dashboard");
     } else {
       setAttemptFailed(true);

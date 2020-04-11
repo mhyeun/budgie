@@ -21,18 +21,21 @@ function logging(state = initialState, action) {
     case "logout":
       return {
         logged: false,
+        username: "",
+        id: "",
+        financeid: "",
       };
     default:
       return state;
   }
 }
 
-export function logMeIn(myid) {
+export function logMeIn(myid, username, financeid) {
   return {
     type: "login",
-    username: getUser(myid).username,
+    username: username,
     id: myid,
-    financeid: getUser(myid).financeid,
+    financeid: financeid,
   };
 }
 
