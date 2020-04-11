@@ -60,8 +60,8 @@ const Dashboard = () => {
     <div id="dashboard">
       <div id="myChart">
         <LineChart
-          width={730}
-          height={250}
+          width={960}
+          height={540}
           data={data}
           margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
         >
