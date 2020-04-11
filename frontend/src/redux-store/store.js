@@ -1,17 +1,20 @@
 import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
+import { getUser } from "../net";
 
 const initialState = {
   logged: false,
   id: "",
+  financeid: "",
 };
 
-function logging(state = initialState, action: any): any {
+function logging(state = initialState, action) {
   switch (action.type) {
     case "login":
       return {
         logged: true,
         id: action.id,
+        financeid: action.financeid,
       };
     case "logout":
       return {
@@ -22,10 +25,11 @@ function logging(state = initialState, action: any): any {
   }
 }
 
-export function logMeIn(myid: string) {
+export function logMeIn(myid) {
   return {
     type: "login",
     id: myid,
+    financeid: getUser(myid).financeid,
   };
 }
 
