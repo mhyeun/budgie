@@ -28,7 +28,7 @@ const Form = () => {
   };
 
   return (
-    <>
+    <div id="form">
       <div id="grid">
         <input
           style={{
@@ -60,16 +60,19 @@ const Form = () => {
         </div>
       )}
       <div id="enterButton">
+        <a id="accountCreator" href="/createAccount">
+          Create account
+        </a>
         <button
           id="enter"
           type="button"
           disabled={!username || !password}
           onClick={handleButtonClick}
         >
-          Log In
+          Log In <i className="arrow right" />
         </button>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -1,6 +1,6 @@
 @import "../../index.scss";
 #dashboard {
-  background-color: #99f38d;
+  background-color: white;
   height: calc(100vh - #{$navbarheight});
   overflow: auto;
   #myChart {
