@@ -10,7 +10,9 @@ const convertToDays = (dateInMs) => {
 
 const smallestDateInterval = (historyData) => {
   const dates = dateParser(historyData);
-  if (dates.length <= 1) {
+  if (dates.length === 0) {
+    return -2;
+  } else if (date.length === 1) {
     return -1;
   }
   let smallestDiff = dates[1] - dates[0];
