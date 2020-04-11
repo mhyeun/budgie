@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const bcrypt = require("bcryptjs");
+const axios = require("axios");
 
 let User = require("../models/user.model");
 
@@ -36,6 +37,14 @@ router.route("/add").post((req, res) => {
             .save()
             .then(() => res.json("User added!"))
             .catch((err) => res.status(400).json("Error: " + err));
+
+          // create and link a financeId to user
+          axios
+            .post("http://localhost:5000/usersFinance/add", {
+              userId: newUser._id,
+            })
+            .then()
+            .catch((err) => console.error(err));
         })
         .catch((err) => console.error(err));
     })

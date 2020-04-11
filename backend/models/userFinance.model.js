@@ -9,6 +9,9 @@ const userFinanceSchema = new Schema(
     goals: {
       type: Array,
     },
+    userId: {
+      type: Schema.Types.ObjectId,
+    },
   },
   {
     timestamps: true,

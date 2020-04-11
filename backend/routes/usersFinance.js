@@ -11,6 +11,19 @@ router.route("/").get((req, res) => {
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
+router.route("/add").post((req, res) => {
+  const newUserFinance = new UserFinance({
+    history: [],
+    goals: [],
+    userId: req.body.userId,
+  });
+
+  newUserFinance
+    .save()
+    .then()
+    .catch((err) => res.status(400).json("Error: " + err));
+});
+
 // POST to history
 router.route("/add/history/:financeId").post((req, res) => {
   UserFinance.findById(req.params.financeId)
