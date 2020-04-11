@@ -5,37 +5,37 @@ import { getUser } from "../net";
 const initialState = {
   logged: false,
   username: "",
-  id: "",
-  financeid: "",
+  Id: "",
+  financeId: "",
 };
 
-function logging(state = initialState, action) {
+function logging(state = initialState, action: any) {
   switch (action.type) {
     case "login":
       return {
         logged: true,
         username: action.username,
-        id: action.id,
-        financeid: action.financeid,
+        Id: action.Id,
+        financeId: action.financeId,
       };
     case "logout":
       return {
         logged: false,
         username: "",
-        id: "",
-        financeid: "",
+        Id: "",
+        financeId: "",
       };
     default:
       return state;
   }
 }
 
-export function logMeIn(myid, username, financeid) {
+export function logMeIn(myId: string, username: string, financeId: string) {
   return {
     type: "login",
     username: username,
-    id: myid,
-    financeid: financeid,
+    Id: myId,
+    financeId: financeId,
   };
 }
 

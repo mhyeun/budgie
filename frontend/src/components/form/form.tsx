@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./form.scss";
 import history from "../../history";
 import store, { logMeIn } from "../../redux-store/store";
-import { authUser, getUser } from "../../net";
+import { authUser, getUser, getFinanceWithId } from "../../net";
 
 const Form = () => {
   const [username, setUsername] = useState("");
@@ -23,8 +23,8 @@ const Form = () => {
       store.dispatch(
         logMeIn(
           authorized,
-          await getUser(authorized).username,
-          await getUser(authorized).financeid
+          ((await getUser(authorized)) as any).username,
+          ((await getFinanceWithId(authorized)) as any)._id
         )
       );
       history.push("/dashboard");
