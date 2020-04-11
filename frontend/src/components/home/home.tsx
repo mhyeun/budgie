@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import "./home.scss";
 import Form from "./../form/form";
-import logo from "./../../icons/login.svg";
+import logo from "./../../icons/budgie.svg";
 
 const Home = () => {
   return (
     <div id="home">
       <div id="login">
         <img id="logo" src={logo} />
-        <h1>Budgeting App</h1>
-        <h4>Please enter your credentials</h4>
+        <h1>Sign in to Budgie</h1>
         <Form />
       </div>
     </div>
