@@ -2,4 +2,9 @@
 #dashboard {
   background-color: #99f38d;
   height: calc(100vh - #{$navbarheight});
+  overflow: auto;
+  #myChart {
+    margin: 50px auto;
+    display: table;
+  }
 }
