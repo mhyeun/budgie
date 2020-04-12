@@ -1,6 +1,6 @@
 import { getHistory, getGoals } from "../../net";
 import smallestDateInterval from "./helper";
-import { getMockHistory } from "../../mockData";
+import { getMockHistory } from "./mockData";
 
 const noDataHandler = () => {
   console.log("Nothing in history.");
