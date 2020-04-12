@@ -34,7 +34,7 @@ const CreateAccount = () => {
   };
 
   return (
-    <div id="accountCreator">
+    <div className="accountCreator">
       <div id="userCredentials">
         <input
           style={{
