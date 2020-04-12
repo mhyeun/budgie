@@ -8,6 +8,13 @@ function convertToDays(dateInMs) {
   return Math.round(dateInMs / millisecondsPerDay);
 }
 
+export function formatDateForAxis(date) {
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  const year = date.getFullYear();
+  return month + "/" + day + "/" + year;
+}
+
 export function smallestDateInterval(historyData) {
   const dates = dateParser(historyData);
   if (dates.length === 0) {
