@@ -15,11 +15,16 @@ export async function getAllUsers() {
   }
 }
 
-export async function createUser(username: String, password: String) {
+export async function createUser(
+  username: String,
+  password: String,
+  email: string
+) {
   try {
     const res = await axios.post(`${url}/users/add`, {
       username: username,
       password: password,
+      email: email,
     });
     return Promise.resolve(res.data);
   } catch (err) {
