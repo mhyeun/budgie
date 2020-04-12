@@ -24,13 +24,14 @@ router.route("/add").post((req, res) => {
       }
       // if username is unique
       const username = req.body.username;
-
+      const email = req.body.email;
       bcrypt
         .hash(req.body.password, 12)
         .then((hashedPassword) => {
           const newUser = new User({
             username: username,
             password: hashedPassword,
+            email: email,
           });
 
           newUser

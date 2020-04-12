@@ -16,5 +16,10 @@
     border-width: thin;
     border-radius: 2ex;
     border: 1.5px solid black;
+    #grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+    }
   }
 }
