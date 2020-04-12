@@ -7,10 +7,12 @@ import { connect } from "react-redux";
 
 export interface NavBarProps {
   logged?: boolean;
+  username?: string;
 }
 
 class NavBar extends React.Component<NavBarProps> {
   render() {
+    const username = this.props.username;
     return (
       <Navbar sticky="top">
         <Navbar.Brand href="/">
@@ -18,7 +20,10 @@ class NavBar extends React.Component<NavBarProps> {
         </Navbar.Brand>
         {this.props.logged && (
           <Nav className="ml-auto">
-            <Nav.Link href="#myChart">My Budgeting</Nav.Link>
+            <Nav.Link href="#myChart">
+              {username![0].toUpperCase() + username?.slice(1).toLowerCase()}'s
+              Budgeting
+            </Nav.Link>
             <NavDropdown title="Account" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">My Profile</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
@@ -42,6 +47,7 @@ class NavBar extends React.Component<NavBarProps> {
 const mapStateToProps = (state: any) => {
   return {
     logged: state.logged,
+    username: state.username,
   };
 };
 export default connect(mapStateToProps)(NavBar);
