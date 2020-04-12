@@ -1,5 +1,6 @@
 import { getHistory, getGoals } from "../../net";
 import smallestDateInterval from "./helper";
+import { getMockHistory } from "../../mockData";
 
 const noDataHandler = () => {
   console.log("Nothing in history.");
@@ -23,6 +24,7 @@ const getData = (financeId) => {
   const goals = getGoals(financeId);
 
   const interval = smallestDateInterval(history);
+  console.log(interval);
   if (interval === -2) {
     return noDataHandler();
   } else if (interval === -1) {

@@ -1,18 +1,18 @@
 // Assumes historyData will be of form [{date: date, amount: amount}]
-const dateParser = (historyData) => {
+function dateParser(historyData) {
   return historyData.map((data) => Date.parse(data.date));
-};
+}
 
-const convertToDays = (dateInMs) => {
+function convertToDays(dateInMs) {
   const millisecondsPerDay = 86400000;
-  return dateInMs / millisecondsPerDay;
-};
+  return Math.round(dateInMs / millisecondsPerDay);
+}
 
-const smallestDateInterval = (historyData) => {
+export function smallestDateInterval(historyData) {
   const dates = dateParser(historyData);
   if (dates.length === 0) {
     return -2;
-  } else if (date.length === 1) {
+  } else if (dates.length === 1) {
     return -1;
   }
   let smallestDiff = dates[1] - dates[0];
@@ -21,6 +21,4 @@ const smallestDateInterval = (historyData) => {
     smallestDiff = Math.min(smallestDiff, currentDiff);
   }
   return convertToDays(smallestDiff);
-};
-
-export default smallestDateInterval;
+}
