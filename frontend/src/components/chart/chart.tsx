@@ -41,7 +41,12 @@ class Chart extends React.Component<ChartProps> {
         />
         <Legend />
         <Line type="monotone" dataKey="Balance" stroke="#228B22" />
-        <Line type="monotone" dataKey="Goal" stroke="#5294E2" />
+        <Line
+          strokeDasharray="5 5"
+          type="monotone"
+          dataKey="Goal"
+          stroke="#5294E2"
+        />
       </LineChart>
     );
   }

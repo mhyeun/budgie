@@ -23,7 +23,7 @@ export function getMockHistory() {
     },
     {
       date: "4/7/2020",
-      amount: "0",
+      amount: "3100",
     },
   ];
   return mockHistory;
