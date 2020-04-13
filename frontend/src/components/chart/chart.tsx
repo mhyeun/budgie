@@ -1,4 +1,5 @@
 import React from "react";
+import moment from "moment";
 import {
   LineChart,
   Line,
@@ -26,10 +27,11 @@ class Chart extends React.Component<ChartProps> {
       >
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis
-          dataKey="name"
+          dataKey="time"
           scale="time"
           type="number"
           domain={this.props.domain}
+          tickFormatter={(unixTime) => moment(unixTime).format("MMM Do YYYY")}
         />
         <YAxis />
         <Tooltip />
