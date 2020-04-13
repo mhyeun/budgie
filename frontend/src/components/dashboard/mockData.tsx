@@ -29,4 +29,12 @@ export function getMockHistory() {
   return mockHistory;
 }
 
-export function getMockGoals() {}
+export function getMockGoals() {
+  const mockGoals = [
+    {
+      date: "4/7/2020",
+      amount: "3000",
+    },
+  ];
+  return mockGoals;
+}

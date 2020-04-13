@@ -2,40 +2,51 @@ import React from "react";
 import Chart from "../chart/chart";
 import "./dashboard.scss";
 
-import { getMockHistory } from "./mockData";
-import { smallestDateInterval, formatDateForAxis } from "./helper";
+import { getMockHistory, getMockGoals } from "./mockData";
 
 const mockData = getMockHistory();
-const interval = smallestDateInterval(mockData);
+const mockGoals = getMockGoals();
 
-const createData = (historyData: any) => {
+const createData = (historyData: any, goalData: any) => {
   const data = new Array();
 
-  for (let i = 0; i < historyData.length; i++) {
+  const startTime = new Date(historyData[0].date).getTime();
+  const endTime = new Date(goalData[0].date).getTime();
+  const timeInterval = endTime - startTime;
+
+  const startAmount = parseInt(historyData[0].amount);
+  const endAmount = parseInt(goalData[0].amount);
+  const amountInterval = endAmount - startAmount;
+
+  data.push({
+    time: new Date(historyData[0].date).getTime(),
+    Balance: historyData[0].amount,
+    Goal: historyData[0].amount,
+  });
+
+  for (let i = 1; i < historyData.length; i++) {
+    const currentTime = new Date(historyData[i].date).getTime();
+    const percentage =
+      Math.round(((currentTime - startTime) / timeInterval) * 100) / 100;
     const dataPoint = {
       time: new Date(historyData[i].date).getTime(),
       Balance: historyData[i].amount,
+      Goal: startAmount + amountInterval * percentage,
     };
     data.push(dataPoint);
   }
-  console.log(data);
+
   return data;
 };
 
-// const getDomain = (historyData: any) => {
-//   const firstDay = new Date(historyData[0].date);
-//   const lastDay = new Date(historyData[historyData.length - 1].date);
-// }
-
-const data = createData(mockData);
-const domain = ["auto", "auto"];
+const data = createData(mockData, mockGoals);
 console.log(data);
 
 const Dashboard = () => {
   return (
     <div id="dashboard">
       <div id="myChart">
-        <Chart data={data} domain={domain} />
+        <Chart data={data} />
       </div>
     </div>
   );

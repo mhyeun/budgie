@@ -30,14 +30,18 @@ class Chart extends React.Component<ChartProps> {
           dataKey="time"
           scale="time"
           type="number"
-          domain={this.props.domain}
-          tickFormatter={(unixTime) => moment(unixTime).format("MMM Do YYYY")}
+          domain={["auto", "auto"]}
+          tickFormatter={(unixTime) => moment(unixTime).format("MM/D")}
         />
         <YAxis />
-        <Tooltip />
+        <Tooltip
+          formatter={(value) => {
+            return `$${value}`;
+          }}
+        />
         <Legend />
-        <Line type="monotone" dataKey="Balance" stroke="#8884d8" />
-        {/* <Line type="monotone" dataKey="uv" stroke="#82ca9d" /> */}
+        <Line type="monotone" dataKey="Balance" stroke="#228B22" />
+        <Line type="monotone" dataKey="Goal" stroke="#5294E2" />
       </LineChart>
     );
   }
