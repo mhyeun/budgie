@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./home.scss";
 import Form from "./../form/form";
 import logo from "./../../icons/budgie.svg";

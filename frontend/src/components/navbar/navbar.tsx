@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import applogo from "../../icons/budgie.svg";
 import "./navbar.scss";
