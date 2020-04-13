@@ -12,6 +12,7 @@ import "./chart.scss";
 
 export interface ChartProps {
   data?: any;
+  domain?: any;
 }
 
 class Chart extends React.Component<ChartProps> {
@@ -24,11 +25,16 @@ class Chart extends React.Component<ChartProps> {
         margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
+        <XAxis
+          dataKey="name"
+          scale="time"
+          type="number"
+          domain={this.props.domain}
+        />
         <YAxis />
         <Tooltip />
         <Legend />
-        <Line type="monotone" dataKey="amount" stroke="#8884d8" />
+        <Line type="monotone" dataKey="Balance" stroke="#8884d8" />
         {/* <Line type="monotone" dataKey="uv" stroke="#82ca9d" /> */}
       </LineChart>
     );
