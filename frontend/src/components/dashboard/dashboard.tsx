@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Chart from "../chart/chart";
 import "./dashboard.scss";
 
@@ -10,56 +10,32 @@ const interval = smallestDateInterval(mockData);
 
 const createData = (historyData: any) => {
   const data = new Array();
-  const firstDay = new Date(historyData[0].date);
-  const lastDay = new Date(historyData[historyData.length - 1].date);
-  lastDay.setDate(lastDay.getDate() + interval);
-  let currentDate = firstDay;
 
-  while (currentDate <= lastDay) {
-    const date = formatDateForAxis(currentDate);
-    for (let i = 0; i < historyData.length; i++) {
-      console.log(historyData[i].date === date);
-      if (historyData[i].date === date) {
-        const dataPoint = {
-          name: date,
-          amount: historyData[i].amount,
-        };
-        data.push(dataPoint);
-        break;
-      }
-    }
+  for (let i = 0; i < historyData.length; i++) {
     const dataPoint = {
-      name: date,
+      date: historyData[i].date,
+      Balance: historyData[i].amount,
     };
     data.push(dataPoint);
-    currentDate.setDate(currentDate.getDate() + interval);
   }
+  console.log(data);
   return data;
 };
 
-const data = createData(mockData);
-console.log(data);
+// const getDomain = (historyData: any) => {
+//   const firstDay = new Date(historyData[0].date);
+//   const lastDay = new Date(historyData[historyData.length - 1].date);
+// }
 
-// const data = [
-//   {
-//     name: "Page A",
-//     uv: 4000,
-//     pv: 2400,
-//     amt: 2400,
-//   },
-//   {
-//     name: "Page B",
-//     uv: 3000,
-//     pv: 1398,
-//     amt: 2210,
-//   },
-// ];
+const data = createData(mockData);
+const domain = [0, "auto"];
+console.log(data);
 
 const Dashboard = () => {
   return (
     <div id="dashboard">
       <div id="myChart">
-        <Chart data={data} />
+        <Chart data={data} domain={domain} />
         <h1>{interval}</h1>
       </div>
     </div>
