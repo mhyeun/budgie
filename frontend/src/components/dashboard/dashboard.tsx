@@ -13,7 +13,7 @@ const createData = (historyData: any) => {
 
   for (let i = 0; i < historyData.length; i++) {
     const dataPoint = {
-      date: historyData[i].date,
+      time: new Date(historyData[i].date).getTime(),
       Balance: historyData[i].amount,
     };
     data.push(dataPoint);
@@ -28,7 +28,7 @@ const createData = (historyData: any) => {
 // }
 
 const data = createData(mockData);
-const domain = [0, "auto"];
+const domain = ["auto", "auto"];
 console.log(data);
 
 const Dashboard = () => {
@@ -36,7 +36,6 @@ const Dashboard = () => {
     <div id="dashboard">
       <div id="myChart">
         <Chart data={data} domain={domain} />
-        <h1>{interval}</h1>
       </div>
     </div>
   );
