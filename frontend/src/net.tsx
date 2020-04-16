@@ -1,3 +1,5 @@
+import { roundDigits, formatDate } from "./netHelper";
+
 const axios = require("axios");
 const bcrypt = require("bcryptjs");
 
@@ -94,11 +96,17 @@ export async function getFinanceWithId(userId: String) {
   }
 }
 
-export async function addHistory(financeId: String, amount: Number) {
+export async function addHistory(financeId: String, amount: number) {
   try {
+    const formattedDate = formatDate(new Date());
+    const formattedAmount = roundDigits(amount);
+    const req = { date: formattedDate, amount: formattedAmount };
+    console.log(req);
     const res = await axios.post(
       `${url}/usersFinance/add/history/${financeId}`,
-      { currentAmount: amount }
+      {
+        data: req,
+      }
     );
     Promise.resolve(res.data);
     return true;
@@ -109,10 +117,17 @@ export async function addHistory(financeId: String, amount: Number) {
   }
 }
 
-export async function addGoal(financeId: String, goal: String) {
+export async function addGoal(
+  financeId: String,
+  goalDate: Date,
+  goalAmount: number
+) {
   try {
+    const formattedDate = formatDate(new Date(goalDate));
+    const formattedAmount = roundDigits(goalAmount);
+    const req = { date: formattedDate, amount: formattedAmount };
     const res = await axios.post(`${url}/usersFinance/add/goal/${financeId}`, {
-      newGoal: goal,
+      data: req,
     });
     Promise.resolve(res.data);
     return true;

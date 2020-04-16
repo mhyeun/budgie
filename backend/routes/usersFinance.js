@@ -15,7 +15,7 @@ router.route("/").get((req, res) => {
 router.route("/add").post((req, res) => {
   const newUserFinance = new UserFinance({
     history: [],
-    goals: [],
+    goal: {},
     userId: req.body.userId,
   });
 
@@ -36,18 +36,18 @@ router.route("/:userId").get((req, res) => {
 router.route("/add/history/:financeId").post((req, res) => {
   UserFinance.findById(req.params.financeId)
     .then((userFinance) => {
-      userFinance.history.push(req.body.currentAmount);
+      userFinance.history.push(req.body.data);
       res.json("Pushed to history successfully.");
     })
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
-// POST to goals
+// POST to goal
 router.route("/add/goal/:financeId").post((req, res) => {
   UserFinance.findById(req.params.financeId)
     .then((userFinance) => {
-      userFinance.goals.push(req.body.newGoal);
-      res.json("Pushed to goals successfully.");
+      userFinance.goal = req.body.data;
+      res.json("Pushed goal successfully.");
     })
     .catch((err) => res.status(400).json("Error: " + err));
 });

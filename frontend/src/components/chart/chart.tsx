@@ -40,8 +40,9 @@ class Chart extends React.Component<ChartProps> {
           }}
         />
         <Legend />
-        <Line type="monotone" dataKey="Balance" stroke="#228B22" />
+        <Line connectNulls type="monotone" dataKey="Balance" stroke="#228B22" />
         <Line
+          connectNulls
           strokeDasharray="5 5"
           type="monotone"
           dataKey="Goal"
