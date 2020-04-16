@@ -15,7 +15,7 @@ router.route("/").get((req, res) => {
 router.route("/add").post((req, res) => {
   const newUserFinance = new UserFinance({
     history: [],
-    goal: {},
+    goal: { date: "", amount: 0 },
     userId: req.body.userId,
   });
 
@@ -37,7 +37,11 @@ router.route("/add/history/:financeId").post((req, res) => {
   UserFinance.findById(req.params.financeId)
     .then((userFinance) => {
       userFinance.history.push(req.body.data);
-      res.json("Pushed to history successfully.");
+
+      userFinance
+        .save()
+        .then(() => res.json("Pushed to history successfully."))
+        .catch((err) => res.status(400).json("Error: " + err));
     })
     .catch((err) => res.status(400).json("Error: " + err));
 });
@@ -47,7 +51,41 @@ router.route("/add/goal/:financeId").post((req, res) => {
   UserFinance.findById(req.params.financeId)
     .then((userFinance) => {
       userFinance.goal = req.body.data;
-      res.json("Pushed goal successfully.");
+
+      userFinance
+        .save()
+        .then(() => {
+          res.json("Pushed to goals successfully.");
+        })
+        .catch((err) => res.status(400).json("Error: " + err));
+    })
+    .catch((err) => res.status(400).json("Error: " + err));
+});
+
+// DEL history
+router.route("/delete/history/:financeId").delete((req, res) => {
+  UserFinance.findById(req.params.financeId)
+    .then((userFinance) => {
+      userFinance.history = [];
+
+      userFinance
+        .save()
+        .then(() => res.json("Deleted history successfully."))
+        .catch((err) => res.status(400).json("Error: " + err));
+    })
+    .catch((err) => res.status(400).json("Error: " + err));
+});
+
+// DEL goal
+router.route("/delete/goal/:financeId").delete((req, res) => {
+  UserFinance.findById(req.params.financeId)
+    .then((userFinance) => {
+      userFinance.goal = {};
+
+      userFinance
+        .save()
+        .then(() => res.json("Deleted goal successfully."))
+        .catch((err) => res.status(400).json("Error: " + err));
     })
     .catch((err) => res.status(400).json("Error: " + err));
 });

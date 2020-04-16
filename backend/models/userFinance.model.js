@@ -7,7 +7,7 @@ const userFinanceSchema = new Schema(
       type: Array,
     },
     goal: {
-      type: Object,
+      type: Schema.Types.Mixed,
     },
     userId: {
       type: Schema.Types.ObjectId,
