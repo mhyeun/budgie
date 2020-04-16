@@ -87,7 +87,7 @@ const CreateAccount = () => {
             disabled={!attemptFailed}
             onClick={handleButtonClick}
           >
-            Set My Goals
+            Set My Goal
           </button>
         </div>
       </div>

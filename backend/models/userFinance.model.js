@@ -6,8 +6,8 @@ const userFinanceSchema = new Schema(
     history: {
       type: Array,
     },
-    goals: {
-      type: Array,
+    goal: {
+      type: Object,
     },
     userId: {
       type: Schema.Types.ObjectId,

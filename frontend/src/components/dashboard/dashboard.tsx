@@ -2,20 +2,20 @@ import React from "react";
 import Chart from "../chart/chart";
 import "./dashboard.scss";
 
-import { getMockHistory, getMockGoals } from "./mockData";
+import { getMockHistory, getMockGoal } from "./mockData";
 
 const mockData = getMockHistory();
-const mockGoals = getMockGoals();
+const mockGoal = getMockGoal();
 
 const createData = (historyData: any, goalData: any) => {
   const data = new Array();
 
   const startTime = new Date(historyData[0].date).getTime();
-  const endTime = new Date(goalData[0].date).getTime();
+  const endTime = new Date(goalData.date).getTime();
   const timeInterval = endTime - startTime;
 
   const startAmount = parseInt(historyData[0].amount);
-  const endAmount = parseInt(goalData[0].amount);
+  const endAmount = parseInt(goalData.amount);
   const amountInterval = endAmount - startAmount;
 
   data.push({
@@ -39,13 +39,14 @@ const createData = (historyData: any, goalData: any) => {
   return data;
 };
 
-const data = createData(mockData, mockGoals);
+const data = createData(mockData, mockGoal);
 console.log(data);
 
 const Dashboard = () => {
   return (
     <div id="dashboard">
       <div id="myChart">
+        <h4>Budgeting Overview</h4>
         <Chart data={data} />
       </div>
     </div>
