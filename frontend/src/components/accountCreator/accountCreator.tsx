@@ -9,7 +9,21 @@ const CreateAccount = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const [attemptFailed, setAttemptFailed] = useState(false);
+  const [usernameFailed, setUsernameFailed] = useState(false);
+  const [passwordFailed, setPasswordFailed] = useState(false);
+  const [emailFailed, setEmailFailed] = useState(false);
+
+  const validityCheck = (): boolean => {
+    setUsernameFailed(
+      !(username && username.length >= 3 && username.length <= 12)
+    );
+    setPasswordFailed(
+      !(password && password.length >= 3 && password.length <= 12)
+    );
+    setEmailFailed(!(email && validate(email)));
+    if (!(usernameFailed && passwordFailed && emailFailed)) return true;
+    else return false;
+  };
 
   const handleKeyPress = (e: any) => {
     if (e.key === "Enter" && username && password && email) {
@@ -18,10 +32,9 @@ const CreateAccount = () => {
   };
 
   const handleButtonClick = async (e: any) => {
-    setAttemptFailed(false);
-    const validEmail = validate(email);
-    if (validEmail) {
+    if (validityCheck()) {
       const authorized = await createUser(username, password, email);
+      console.log(authorized);
       if (authorized) {
         store.dispatch(
           logMeIn(
@@ -31,20 +44,15 @@ const CreateAccount = () => {
           )
         );
         history.push("/settings");
-      } else {
-        setAttemptFailed(true);
       }
-    } else {
-      setAttemptFailed(true);
     }
   };
-
   return (
     <div className="accountCreator">
       <div id="userCredentials">
         <input
           style={{
-            border: attemptFailed ? "1px solid red" : "1px solid black",
+            border: usernameFailed ? "1px solid red" : "1px solid black",
             marginRight: "10px",
           }}
           placeholder="Username"
@@ -56,7 +64,7 @@ const CreateAccount = () => {
         />
         <input
           style={{
-            border: attemptFailed ? "1px solid red" : "1px solid black",
+            border: passwordFailed ? "1px solid red" : "1px solid black",
           }}
           placeholder="Password"
           type="password"
@@ -68,7 +76,7 @@ const CreateAccount = () => {
         />
         <input
           style={{
-            border: attemptFailed ? "1px solid red" : "1px solid black",
+            border: emailFailed ? "1px solid red" : "1px solid black",
             marginTop: "10px",
           }}
           placeholder="Email"
@@ -80,7 +88,7 @@ const CreateAccount = () => {
           onKeyPress={handleKeyPress}
         />
         <br />
-        {attemptFailed && (
+        {usernameFailed && passwordFailed && emailFailed && (
           <p
             id="msg"
             style={{
@@ -102,12 +110,19 @@ const CreateAccount = () => {
         >
           Create My Account
         </button>
-        <p id="criteria">
+        <p
+          id="criteria"
+          style={{
+            color:
+              usernameFailed || passwordFailed || emailFailed ? "red" : "black",
+          }}
+        >
           *Username and password, must be between 3 to 10 characters, white
           space on endings are ignored.
         </p>
       </div>
       <div id="historyGoals"></div>
+      {console.log(usernameFailed, passwordFailed, emailFailed)}
     </div>
   );
 };
