@@ -25,8 +25,8 @@ router.route("/add").post((req, res) => {
       // if username is unique
       const username = req.body.username;
       User.findOne({ email: req.body.email })
-        .then((email) => {
-          if (email) {
+        .then((eml) => {
+          if (eml) {
             throw new Error("Email already exists.");
           }
           const email = req.body.email;
