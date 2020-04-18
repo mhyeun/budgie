@@ -24,27 +24,35 @@ router.route("/add").post((req, res) => {
       }
       // if username is unique
       const username = req.body.username;
-      const email = req.body.email;
-      bcrypt
-        .hash(req.body.password, 12)
-        .then((hashedPassword) => {
-          const newUser = new User({
-            username: username,
-            password: hashedPassword,
-            email: email,
-          });
+      User.findOne({ email: req.body.email })
+        .then((email) => {
+          if (email) {
+            throw new Error("Email already exists.");
+          }
+          const email = req.body.email;
+          bcrypt
+            .hash(req.body.password, 12)
+            .then((hashedPassword) => {
+              const newUser = new User({
+                username: username,
+                password: hashedPassword,
+                email: email,
+              });
 
-          newUser
-            .save()
-            .then(() => res.json("User added!"))
-            .catch((err) => res.status(400).json("Error: " + err));
-
-          // create and link a financeId to user
-          axios
-            .post("http://localhost:5000/usersFinance/add", {
-              userId: newUser._id,
+              newUser
+                .save()
+                .then(() => {
+                  res.json("User added!");
+                  // create and link a financeId to user
+                  axios
+                    .post("http://localhost:5000/usersFinance/add", {
+                      userId: newUser._id,
+                    })
+                    .then()
+                    .catch((err) => console.error(err));
+                })
+                .catch((err) => res.status(400).json("Error: " + err));
             })
-            .then()
             .catch((err) => console.error(err));
         })
         .catch((err) => console.error(err));
