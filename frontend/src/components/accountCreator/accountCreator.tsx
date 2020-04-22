@@ -21,8 +21,8 @@ const CreateAccount = () => {
       !(password && password.length >= 3 && password.length <= 12)
     );
     setEmailFailed(!(email && validate(email)));
-    if (!(usernameFailed && passwordFailed && emailFailed)) return true;
-    else return false;
+    if (!(usernameFailed && passwordFailed && emailFailed)) return false;
+    else return true;
   };
 
   const handleKeyPress = (e: any) => {
@@ -43,6 +43,7 @@ const CreateAccount = () => {
           )
         );
         history.push("/settings");
+      } else {
       }
     }
   };
