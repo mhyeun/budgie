@@ -34,7 +34,6 @@ const CreateAccount = () => {
   const handleButtonClick = async (e: any) => {
     if (validityCheck()) {
       const authorized = await createUser(username, password, email);
-      console.log(authorized);
       if (authorized) {
         store.dispatch(
           logMeIn(
