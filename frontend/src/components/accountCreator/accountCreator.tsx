@@ -49,23 +49,28 @@ const CreateAccount = () => {
   return (
     <div className="accountCreator">
       <div id="userCredentials">
+        <h4>Create New Budgie Account</h4>
         <input
           style={{
+            borderRadius: "4px",
             border: usernameFailed ? "1px solid red" : "1px solid black",
-            marginRight: "10px",
+            marginTop: "15px",
           }}
-          placeholder="Username"
+          placeholder=" Username"
           name="username"
           id="user"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           onKeyPress={handleKeyPress}
         />
+        <br />
         <input
           style={{
+            borderRadius: "4px",
             border: passwordFailed ? "1px solid red" : "1px solid black",
+            marginTop: "10px",
           }}
-          placeholder="Password"
+          placeholder=" Password"
           type="password"
           name="password"
           id="pw"
@@ -73,12 +78,14 @@ const CreateAccount = () => {
           onChange={(e) => setPassword(e.target.value)}
           onKeyPress={handleKeyPress}
         />
+        <br />
         <input
           style={{
+            borderRadius: "4px",
             border: emailFailed ? "1px solid red" : "1px solid black",
             marginTop: "10px",
           }}
-          placeholder="Email"
+          placeholder=" Email"
           type="email"
           name="email"
           id="em"
@@ -87,19 +94,6 @@ const CreateAccount = () => {
           onKeyPress={handleKeyPress}
         />
         <br />
-        {usernameFailed && passwordFailed && emailFailed && (
-          <p
-            id="msg"
-            style={{
-              marginTop: "5px",
-              marginBottom: "-10px",
-              fontSize: "small",
-            }}
-          >
-            Please follow username and password guidlines, email must be valid
-            aswell.
-          </p>
-        )}
         <button
           id="enter"
           type="button"
@@ -107,17 +101,18 @@ const CreateAccount = () => {
           disabled={!username || !password}
           onClick={handleButtonClick}
         >
-          Create My Account
+          Create Account
         </button>
         <p
           id="criteria"
           style={{
+            marginLeft: "35px",
+            marginRight: "20px",
             color:
               usernameFailed || passwordFailed || emailFailed ? "red" : "black",
           }}
         >
-          *Username and password, must be between 3 to 10 characters, white
-          space on endings are ignored.
+          Username and password both must be between 3 to 10 characters.
         </p>
       </div>
       <div id="historyGoals"></div>
