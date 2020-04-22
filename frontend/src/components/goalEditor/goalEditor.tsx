@@ -1,14 +1,12 @@
 import React from "react";
 import "./goalEditor.scss";
 
-const EditAccount = () => {
+const EditGoal = () => {
   return (
-    <div id="home">
-      <div id="login">
-        <h1>Edit Some Goals</h1>
-      </div>
+    <div className="EditGoal">
+      <h1>Edit Some Goals</h1>
     </div>
   );
 };
 
-export default EditAccount;
+export default EditGoal;
