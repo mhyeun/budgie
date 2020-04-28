@@ -17,6 +17,10 @@ export interface ChartProps {
 }
 
 class Chart extends React.Component<ChartProps> {
+  componentDidMount() {
+    console.log("props: ", this.props);
+  }
+
   render() {
     return (
       <LineChart
