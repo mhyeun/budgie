@@ -6,7 +6,6 @@ import Dashboard from "./components/dashboard/dashboard";
 import NavBar from "./components/navbar/navbar";
 import CreateAccount from "./components/accountCreator/accountCreator";
 import history from "./history";
-import GoalEditor from "./components/goalEditor/goalEditor";
 import { Route, Router, BrowserRouter, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./redux-store/store";
@@ -24,7 +23,6 @@ const App = () => {
               path="/createAccount"
               component={() => <CreateAccount />}
             />
-            <Route exact path="/editGoal" component={() => <GoalEditor />} />
           </Switch>
         </Router>
       </BrowserRouter>
