@@ -24,7 +24,6 @@ class NavBar extends React.Component<NavBarProps> {
               {username![0].toUpperCase() + username?.slice(1).toLowerCase()}'s
               Budgeting
             </Nav.Link>
-            <Nav.Link href="/editGoal">Add Goals</Nav.Link>
             <NavDropdown title="Account" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">My Profile</NavDropdown.Item>
               <NavDropdown.Divider />
