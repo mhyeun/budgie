@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import Chart from "../chart/chart";
-import "./dashboard.scss";
-
+import { connect } from "react-redux";
 import { getMockHistory, getMockGoal } from "./mockData";
+import { addHistory, addGoal } from "../../net";
+import "./dashboard.scss";
 
 const mockData = getMockHistory();
 const mockGoal = getMockGoal();
@@ -21,13 +22,14 @@ const createData = (historyData: any, goalData: any) => {
   data.push({
     time: new Date(historyData[0].date).getTime(),
     Balance: historyData[0].amount,
-    Goal: historyData[0].amount,
+    Goal: parseInt(historyData[0].amount),
   });
 
   for (let i = 1; i < historyData.length; i++) {
     const currentTime = new Date(historyData[i].date).getTime();
     const percentage =
       Math.round(((currentTime - startTime) / timeInterval) * 100) / 100;
+    console.log("INFO: ", percentage);
     const dataPoint = {
       time: new Date(historyData[i].date).getTime(),
       Balance: historyData[i].amount,
@@ -42,15 +44,49 @@ const createData = (historyData: any, goalData: any) => {
 const data = createData(mockData, mockGoal);
 console.log(data);
 
-const Dashboard = () => {
+const Dashboard = (props: any) => {
+  const { financeId } = props;
+  const [goalDate, setGoalDate] = useState("");
+  const [goalAmount, setGoalAmount] = useState(0);
+
+  const handleSubmitNewGoal = () => {
+    const dateToSubmit = new Date(goalDate);
+    addGoal(financeId, dateToSubmit, goalAmount)
+    .then(res => console.log("Submit complete!"));
+  }
+
   return (
     <div id="dashboard">
       <div id="myChart">
         <h4>Budgeting Overview</h4>
         <Chart data={data} />
       </div>
+      <div style={{ marginLeft: "40vw" }}>
+        <p>New Goal</p>
+        <input
+          style={{ marginRight: 10 }}
+          placeholder={goalDate}
+          onChange={(e) => setGoalDate(e.target.value)}
+        />
+        <input
+          style={{ marginRight: 10 }}
+          type="number"
+          onChange={(e) => setGoalAmount(parseInt(e.target.value))}
+        />
+        <button
+          onClick={() => handleSubmitNewGoal()}
+        >
+          Submit
+        </button>
+      </div>
     </div>
   );
 };
 
-export default Dashboard;
+const mapStateToProps = (state: any) => {
+  return {
+    financeId: state.financeId
+  }
+}
+
+export default connect(mapStateToProps)(Dashboard);

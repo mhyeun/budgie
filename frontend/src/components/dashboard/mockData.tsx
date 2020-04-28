@@ -25,14 +25,18 @@ export function getMockHistory() {
       date: "4/7/2020",
       amount: "3100",
     },
+    {
+      date: "5/8/2020",
+      amount: "10000",
+    },
   ];
   return mockHistory;
 }
 
 export function getMockGoal() {
   const mockGoal = {
-    date: "4/7/2020",
-    amount: "3000",
+    date: "5/10/2020",
+    amount: "10000",
   };
   return mockGoal;
 }

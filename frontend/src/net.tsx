@@ -126,6 +126,7 @@ export async function addGoal(
     const formattedDate = formatDate(new Date(goalDate));
     const formattedAmount = roundDigits(goalAmount);
     const req = { date: formattedDate, amount: formattedAmount };
+    console.log("req: ", req);
     const res = await axios.post(`${url}/usersFinance/add/goal/${financeId}`, {
       data: req,
     });
