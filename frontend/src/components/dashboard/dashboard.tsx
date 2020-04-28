@@ -48,12 +48,20 @@ const Dashboard = (props: any) => {
   const { financeId } = props;
   const [goalDate, setGoalDate] = useState("");
   const [goalAmount, setGoalAmount] = useState(0);
+  const [historyAmount, setHistoryAmount] = useState(0);
 
   const handleSubmitNewGoal = () => {
     const dateToSubmit = new Date(goalDate);
-    addGoal(financeId, dateToSubmit, goalAmount)
-    .then(res => console.log("Submit complete!"));
-  }
+    addGoal(financeId, dateToSubmit, goalAmount).then(() =>
+      console.log("Submit complete!")
+    );
+  };
+
+  const handleSubmitNewHistory = () => {
+    addHistory(financeId, historyAmount).then(() =>
+      console.log("Submit complete!")
+    );
+  };
 
   return (
     <div id="dashboard">
@@ -73,11 +81,15 @@ const Dashboard = (props: any) => {
           type="number"
           onChange={(e) => setGoalAmount(parseInt(e.target.value))}
         />
-        <button
-          onClick={() => handleSubmitNewGoal()}
-        >
-          Submit
-        </button>
+        <button onClick={() => handleSubmitNewGoal()}>Submit</button>
+      </div>
+      <div style={{ marginLeft: "40vw" }}>
+        <p>New History</p>
+        <input
+          type="number"
+          onChange={(e) => setHistoryAmount(parseInt(e.target.value))}
+        />
+        <button onClick={() => handleSubmitNewHistory()}>Submit</button>
       </div>
     </div>
   );
@@ -85,8 +97,8 @@ const Dashboard = (props: any) => {
 
 const mapStateToProps = (state: any) => {
   return {
-    financeId: state.financeId
-  }
-}
+    financeId: state.financeId,
+  };
+};
 
 export default connect(mapStateToProps)(Dashboard);
