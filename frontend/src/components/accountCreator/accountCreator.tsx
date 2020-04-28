@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./accountCreator.scss";
 import history from "../../history";
 import store, { logMeIn } from "../../redux-store/store";
-import { createUser, getUser, getFinanceWithId } from "../../net";
+import { createUser, getUser, getFinanceWithId, getAllUsers } from "../../net";
 import { validate } from "email-validator";
 
 const CreateAccount = () => {
@@ -12,6 +12,8 @@ const CreateAccount = () => {
   const [usernameFailed, setUsernameFailed] = useState(false);
   const [passwordFailed, setPasswordFailed] = useState(false);
   const [emailFailed, setEmailFailed] = useState(false);
+  const [usernameUnique, setUsernameUnique] = useState(true);
+  const [emailUnique, setEmailUnique] = useState(true);
 
   const validityCheck = (): boolean => {
     setUsernameFailed(
@@ -21,8 +23,22 @@ const CreateAccount = () => {
       !(password && password.length >= 3 && password.length <= 12)
     );
     setEmailFailed(!(email && validate(email)));
-    if (!(usernameFailed && passwordFailed && emailFailed)) return false;
-    else return true;
+    if (!(usernameFailed && passwordFailed && emailFailed)) return true;
+    else return false;
+  };
+
+  const duplicityCheck = async () => {
+    const users = await getAllUsers();
+    users.forEach((elem: { username: string; email: string }) => {
+      if (elem.username === username) {
+        setUsernameUnique(false);
+      }
+      if (elem.email === email) {
+        setEmailUnique(false);
+      }
+    });
+    if (usernameUnique && emailUnique) return true;
+    else return false;
   };
 
   const handleKeyPress = (e: any) => {
@@ -32,7 +48,7 @@ const CreateAccount = () => {
   };
 
   const handleButtonClick = async (e: any) => {
-    if (validityCheck()) {
+    if (validityCheck() && duplicityCheck()) {
       const authorized = await createUser(username, password, email);
       if (authorized) {
         store.dispatch(
@@ -42,8 +58,9 @@ const CreateAccount = () => {
             ((await getFinanceWithId(authorized)) as any)._id
           )
         );
-        history.push("/settings");
+        history.push("/dashboard");
       } else {
+        console.error("Servor encountered an Error");
       }
     }
   };
@@ -54,7 +71,10 @@ const CreateAccount = () => {
         <input
           style={{
             borderRadius: "4px",
-            border: usernameFailed ? "1px solid red" : "1px solid black",
+            border:
+              usernameFailed || !usernameUnique
+                ? "1px solid red"
+                : "1px solid black",
             marginTop: "15px",
           }}
           placeholder=" Username"
@@ -83,7 +103,8 @@ const CreateAccount = () => {
         <input
           style={{
             borderRadius: "4px",
-            border: emailFailed ? "1px solid red" : "1px solid black",
+            border:
+              emailFailed || !emailUnique ? "1px solid red" : "1px solid black",
             marginTop: "10px",
           }}
           placeholder=" Email"
@@ -104,20 +125,43 @@ const CreateAccount = () => {
         >
           Create Account
         </button>
-        <p
+        <div
           id="criteria"
           style={{
             marginLeft: "35px",
             marginRight: "20px",
-            color:
-              usernameFailed || passwordFailed || emailFailed ? "red" : "black",
           }}
         >
-          Username and password both must be between 3 to 10 characters.
-        </p>
+          <p
+            style={{
+              display: usernameUnique ? "none" : "inline",
+              marginInlineEnd: "1em",
+              color: "red",
+            }}
+          >
+            Username is taken!
+          </p>
+          <p
+            style={{
+              display: emailUnique ? "none" : "inline",
+              color: "red",
+            }}
+          >
+            Email is taken!
+          </p>
+          <p
+            style={{
+              color:
+                usernameFailed || passwordFailed || emailFailed
+                  ? "red"
+                  : "black",
+            }}
+          >
+            Username and password both must be between 3 to 10 characters.
+          </p>
+        </div>
       </div>
       <div id="historyGoals"></div>
-      {console.log(usernameFailed, passwordFailed, emailFailed)}
     </div>
   );
 };
