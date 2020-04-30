@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./accountCreator.scss";
+import backButton from "../../icons/arrow.svg";
 import history from "../../history";
 import store, { logMeIn } from "../../redux-store/store";
 import { createUser, getUser, getFinanceWithId, getAllUsers } from "../../net";
@@ -67,16 +68,19 @@ const CreateAccount = () => {
   return (
     <div className="accountCreator">
       <div id="userCredentials">
-        {/* <button
+        <button
           style={{
             border: "none",
             backgroundColor: "Transparent",
             cursor: "pointer",
+            position: "absolute",
+            left: "10px",
+            top: "15px",
           }}
-          onClick={() => window.history.back()}
+          onClick={() => history.goBack()}
         >
-          {"< Back"}
-        </button> */}
+          <img src={backButton} width={30} height={25} alt="Go Back"></img>
+        </button>
         <h4>Create New Budgie Account</h4>
         <input
           style={{
