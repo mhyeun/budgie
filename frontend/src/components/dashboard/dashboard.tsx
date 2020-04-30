@@ -3,6 +3,7 @@ import Chart from "../chart/chart";
 import { connect } from "react-redux";
 import { getData } from "./dataHelper";
 import { addHistory, addGoal, getFinanceWithId } from "../../net";
+import history from "../../history";
 import moment from "moment";
 import "./dashboard.scss";
 
@@ -10,11 +11,18 @@ const properUnits = () => {
   const toolTip = document.getElementsByClassName(
     ".recharts-tooltip-label"
   )[0] as HTMLElement;
-  toolTip.innerHTML = moment(toolTip.innerHTML).format("MM/D");
+  if (toolTip) {
+    toolTip.innerHTML = moment(toolTip.innerHTML).format("MM/D");
+  }
+  console.log(toolTip);
 };
 
 const Dashboard = (props: any) => {
   const { Id, financeId } = props;
+
+  if (!Id || !financeId) {
+    history.push("/");
+  }
 
   const [currentUserFinance, setCurrentUserFinance] = useState({
     history: [],
@@ -37,13 +45,16 @@ const Dashboard = (props: any) => {
   }, []);
 
   useEffect(() => {
+    properUnits();
+  }, []);
+
+  useEffect(() => {
     if (isFinanceLoaded) {
       const history = currentUserFinance.history;
       const goal = currentUserFinance.goal;
       const data = getData(history, goal);
       setData(data);
       setIsDataLoaded(true);
-      properUnits();
     }
   }, [isFinanceLoaded]);
 
