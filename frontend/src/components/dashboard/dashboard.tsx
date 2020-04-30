@@ -61,10 +61,14 @@ const Dashboard = (props: any) => {
   const handleSubmitNewGoal = () => {
     const dateToSubmit = new Date(goalDate);
     addGoal(financeId, dateToSubmit, goalAmount);
+    alert(
+      `Goal sent successfully with date: ${goalDate}, amount: ${goalAmount}!`
+    );
   };
 
   const handleSubmitNewHistory = () => {
     addHistory(financeId, historyAmount);
+    alert(`Goal sent successfully with amount: ${historyAmount}!`);
   };
 
   return (
@@ -76,30 +80,34 @@ const Dashboard = (props: any) => {
         <h4>Update Budgeting Information</h4>
         <div style={{ marginLeft: "5%", marginTop: 20 }}>
           <div>
-            <p>Update Goal</p>
+            <h6>Update Goal</h6>
             <input
-              style={{ marginRight: 10 }}
-              placeholder="Ex: 4/20/2020"
+              className="inputField"
+              placeholder=" Ex: 4/20/2020"
               onChange={(e) => setGoalDate(e.target.value)}
             />
             <input
-              style={{ marginRight: 10 }}
-              placeholder="Ex: 2000"
+              className="inputField"
+              placeholder=" Ex: 2000"
               type="number"
               onChange={(e) => setGoalAmount(parseInt(e.target.value))}
             />
-            <button onClick={() => handleSubmitNewGoal()}>Submit Goal</button>
+            <button className="submit" onClick={() => handleSubmitNewGoal()}>
+              Submit Goal
+            </button>
           </div>
           <br />
           <div style={{ marginTop: 10 }}>
-            <p>Log Today's Balance</p>
+            <h6>Log Today's Balance</h6>
             <input
-              style={{ marginRight: 10 }}
-              placeholder="Ex: 1000"
+              className="inputField"
+              placeholder=" Ex: 1000"
               type="number"
               onChange={(e) => setHistoryAmount(parseInt(e.target.value))}
             />
-            <button onClick={() => handleSubmitNewHistory()}>Submit Log</button>
+            <button className="submit" onClick={() => handleSubmitNewHistory()}>
+              Submit Log
+            </button>
           </div>
         </div>
       </div>
