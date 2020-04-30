@@ -66,19 +66,23 @@ const Dashboard = (props: any) => {
         <p>New Goal</p>
         <input
           style={{ marginRight: 10 }}
-          placeholder={goalDate}
+          placeholder="Ex: 4/20/2020"
           onChange={(e) => setGoalDate(e.target.value)}
         />
         <input
           style={{ marginRight: 10 }}
+          placeholder="Ex: 69"
           type="number"
           onChange={(e) => setGoalAmount(parseInt(e.target.value))}
         />
         <button onClick={() => handleSubmitNewGoal()}>Submit</button>
       </div>
+      <br />
       <div style={{ marginLeft: "40vw" }}>
         <p>New History</p>
         <input
+          style={{ marginRight: 10 }}
+          placeholder="Ex: 420"
           type="number"
           onChange={(e) => setHistoryAmount(parseInt(e.target.value))}
         />
