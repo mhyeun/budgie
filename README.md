@@ -1,4 +1,4 @@
-# budgie, a budgeting app
+# Budgie, a budgeting app
 <p align="center">
   <img width="40px" height="40px" style="margin-bottom: 0" src="./frontend/public/budgie.svg">
 </p> 
