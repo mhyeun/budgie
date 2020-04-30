@@ -77,7 +77,7 @@ const CreateAccount = () => {
             left: "10px",
             top: "15px",
           }}
-          onClick={() => window.history.back()}
+          onClick={() => history.goBack()}
         >
           <img src={backButton} width={30} height={25} alt="Go Back"></img>
         </button>
