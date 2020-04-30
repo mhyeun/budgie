@@ -54,7 +54,7 @@ const CreateAccount = () => {
         store.dispatch(
           logMeIn(
             authorized,
-            ((await getUser(authorized)) as any).username,
+            username,
             ((await getFinanceWithId(authorized)) as any)._id
           )
         );
