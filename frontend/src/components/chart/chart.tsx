@@ -17,9 +17,17 @@ export interface ChartProps {
 }
 
 class Chart extends React.Component<ChartProps> {
-  componentDidMount() {
-    console.log("props: ", this.props);
-  }
+  private properUnits = () => {
+    const toolTip = document.getElementsByClassName(
+      "recharts-tooltip-label"
+    )[0];
+    if (toolTip) {
+      const timeInMs = parseInt(toolTip.innerHTML);
+      if (timeInMs) {
+        toolTip.innerHTML = moment(timeInMs).format("MM/D");
+      }
+    }
+  };
 
   render() {
     return (
@@ -28,6 +36,7 @@ class Chart extends React.Component<ChartProps> {
         height={540}
         data={this.props.data}
         margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+        onMouseMove={() => this.properUnits()}
       >
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis
