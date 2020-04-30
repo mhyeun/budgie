@@ -9,7 +9,7 @@ import "./dashboard.scss";
 
 const properUnits = () => {
   const toolTip = document.getElementsByClassName(
-    ".recharts-tooltip-label"
+    "recharts-tooltip-label"
   )[0] as HTMLElement;
   if (toolTip) {
     toolTip.innerHTML = moment(toolTip.innerHTML).format("MM/D");
