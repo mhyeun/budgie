@@ -67,7 +67,7 @@ const CreateAccount = () => {
   return (
     <div className="accountCreator">
       <div id="userCredentials">
-        <button
+        {/* <button
           style={{
             border: "none",
             backgroundColor: "Transparent",
@@ -76,7 +76,7 @@ const CreateAccount = () => {
           onClick={() => window.history.back()}
         >
           {"< Back"}
-        </button>
+        </button> */}
         <h4>Create New Budgie Account</h4>
         <input
           style={{
