@@ -7,16 +7,6 @@ import history from "../../history";
 import moment from "moment";
 import "./dashboard.scss";
 
-const properUnits = () => {
-  const toolTip = document.getElementsByClassName(
-    "recharts-tooltip-label"
-  )[0] as HTMLElement;
-  if (toolTip) {
-    toolTip.innerHTML = moment(toolTip.innerHTML).format("MM/D");
-  }
-  console.log(toolTip);
-};
-
 const Dashboard = (props: any) => {
   const { Id, financeId } = props;
 
@@ -42,10 +32,6 @@ const Dashboard = (props: any) => {
       setIsFinanceLoaded(true);
     }
     getFinance(Id);
-  }, []);
-
-  useEffect(() => {
-    properUnits();
   }, []);
 
   useEffect(() => {
