@@ -7,7 +7,7 @@ const Home = () => {
   return (
     <div id="home">
       <div id="login">
-        <img id="logo" src={logo} />
+        <img id="logo" src={logo} alt="Bird" />
         <h1>Sign in to Budgie</h1>
         <Form />
       </div>

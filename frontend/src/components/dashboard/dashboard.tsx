@@ -58,32 +58,36 @@ const Dashboard = (props: any) => {
       <div id="myChart">
         <h4>Budgeting Overview</h4>
         {isDataLoaded && <Chart data={data} />}
-      </div>
-      <div style={{ marginLeft: "40vw" }}>
-        <p>New Goal</p>
-        <input
-          style={{ marginRight: 10 }}
-          placeholder="Ex: 4/20/2020"
-          onChange={(e) => setGoalDate(e.target.value)}
-        />
-        <input
-          style={{ marginRight: 10 }}
-          placeholder="Ex: 69"
-          type="number"
-          onChange={(e) => setGoalAmount(parseInt(e.target.value))}
-        />
-        <button onClick={() => handleSubmitNewGoal()}>Submit</button>
-      </div>
-      <br />
-      <div style={{ marginLeft: "40vw" }}>
-        <p>New History</p>
-        <input
-          style={{ marginRight: 10 }}
-          placeholder="Ex: 420"
-          type="number"
-          onChange={(e) => setHistoryAmount(parseInt(e.target.value))}
-        />
-        <button onClick={() => handleSubmitNewHistory()}>Submit</button>
+        <br />
+        <h4>Update Budgeting Information</h4>
+        <div style={{ marginLeft: "5%", marginTop: 20 }}>
+          <div>
+            <p>Update Goal</p>
+            <input
+              style={{ marginRight: 10 }}
+              placeholder="Ex: 4/20/2020"
+              onChange={(e) => setGoalDate(e.target.value)}
+            />
+            <input
+              style={{ marginRight: 10 }}
+              placeholder="Ex: 2000"
+              type="number"
+              onChange={(e) => setGoalAmount(parseInt(e.target.value))}
+            />
+            <button onClick={() => handleSubmitNewGoal()}>Submit Goal</button>
+          </div>
+          <br />
+          <div style={{ marginTop: 10 }}>
+            <p>Log Today's Balance</p>
+            <input
+              style={{ marginRight: 10 }}
+              placeholder="Ex: 1000"
+              type="number"
+              onChange={(e) => setHistoryAmount(parseInt(e.target.value))}
+            />
+            <button onClick={() => handleSubmitNewHistory()}>Submit Log</button>
+          </div>
+        </div>
       </div>
     </div>
   );

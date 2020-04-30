@@ -16,7 +16,7 @@ class NavBar extends React.Component<NavBarProps> {
     return (
       <Navbar sticky="top">
         <Navbar.Brand href="/">
-          <img id="logo" src={applogo} width={40} height={40} />
+          <img id="logo" src={applogo} width={40} height={40} alt="Bird" />
         </Navbar.Brand>
         {this.props.logged && (
           <Nav className="ml-auto">

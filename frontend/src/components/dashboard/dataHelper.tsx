@@ -1,5 +1,5 @@
 export function getData(historyData: any, goalData: any) {
-  const data = new Array();
+  const data = [];
 
   if (historyData.length === 0) {
     return [];
